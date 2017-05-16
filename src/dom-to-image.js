@@ -156,6 +156,9 @@
                 return cloneChildren(node, clone, filter);
             })
             .then(function (clone) {
+                return cloneShadow(node, clone, filter);
+            })
+            .then(function (clone) {
                 return processClone(node, clone);
             });
 
@@ -164,8 +167,24 @@
             return node.cloneNode(false);
         }
 
+        function cloneShadow(original, clone, filter) {
+            if (!original.shadowRoot) return Promise.resolve(clone);
+
+            return cloneChildren(original.shadowRoot, clone, filter);
+        }
+
         function cloneChildren(original, clone, filter) {
             var children = original.childNodes;
+
+            if (original.nodeName.toUpperCase() === 'CONTENT') {
+                let nodeArray = [];
+                Array.from(original.getDistributedNodes(), (node) => {
+                    nodeArray.push = node;
+                });
+
+                children = nodeArray;
+            }
+
             if (children.length === 0) return Promise.resolve(clone);
 
             return cloneChildrenInOrder(clone, util.asArray(children), filter)
