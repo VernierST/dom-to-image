@@ -160,7 +160,7 @@
             });
 
         function makeNodeCopy(node) {
-            if (node instanceof HTMLCanvasElement) return util.makeImage(node.toDataURL());
+            if (node instanceof HTMLCanvasElement && node.clientHeight) return util.makeImage(node.toDataURL());
             return node.cloneNode(false);
         }
 
