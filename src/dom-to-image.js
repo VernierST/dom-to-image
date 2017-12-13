@@ -179,8 +179,8 @@
                 shadowChildren = Array.from(original.shadowRoot.childNodes);
             }
 
-            if (original.nodeName.toUpperCase() === 'CONTENT') {
-                contentChildren = Array.from(original.getDistributedNodes());
+            if (original.nodeName.toUpperCase() === 'SLOT') {
+                contentChildren = Array.from(original.assignedNodes());
             }
 
             children = children.concat(shadowChildren, contentChildren);
