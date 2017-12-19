@@ -164,12 +164,6 @@
             return node.cloneNode(false);
         }
 
-        function cloneShadow(original, clone, filter) {
-            if (!original.shadowRoot) return Promise.resolve(clone);
-
-            return cloneChildren(original.shadowRoot, clone, filter);
-        }
-
         function cloneChildren(original, clone, filter) {
             var children = Array.from(original.childNodes).filter(node => !node.slot);
             var shadowChildren = [];
