@@ -5,7 +5,6 @@
     var imagediff = global.imagediff;
     var domtoimage = global.domtoimage;
     var Promise = global.Promise;
-    var ocr = global.OCRAD;
 
     var delay = domtoimage.impl.util.delay;
 
@@ -124,11 +123,20 @@
             });
 
             it('should render text nodes', function (done) {
-                this.timeout(10000);
+                this.timeout(12000);
                 loadTestPage('text/dom-node.html', 'text/style.css')
                     .then(renderToPng)
                     .then(drawDataUrl)
                     .then(assertTextRendered(['SOME TEXT', 'SOME MORE TEXT']))
+                    .then(done).catch(done);
+            });
+
+            it('should render shadom dom nodes', function (done) {
+                this.timeout(10000);
+                loadTestPage('shadow/dom-node.html')
+                    .then(renderToPng)
+                    .then(drawDataUrl)
+                    .then(assertTextRendered(['SOME TEXT', 'SOME SHADOW DOM TEXT']))
                     .then(done).catch(done);
             });
 
