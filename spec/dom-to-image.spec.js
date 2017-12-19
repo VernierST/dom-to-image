@@ -137,8 +137,8 @@
                 loadTestPage('pseudo/dom-node.html', 'pseudo/style.css')
                     .then(renderToPng)
                     .then(drawDataUrl)
-                    .then(assertTextRendered(["JUSTBEFORE", "BOTHBEFORE"]))
-                    .then(assertTextRendered(["JUSTAFTER", "BOTHAFTER"]))
+                    .then(assertTextRendered(["justbefore", "bothbefore"]))
+                    .then(assertTextRendered(["justafter", "bothafter"]))
                     .then(done).catch(done);
             });
 

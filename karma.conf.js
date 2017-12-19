@@ -36,15 +36,8 @@ module.exports = function (config) {
             captureConsole: true
         },
         autoWatch: true,
-        browsers: ['chrome', 'Firefox'],
-        customLaunchers: {
-            chrome: {
-                base: 'Chrome',
-                flags: ['--no-sandbox']
-            }
-        },
-
-        singleRun: false,
+        browsers: ['Chrome'],
+        singleRun: true,
         browserNoActivityTimeout: 60000
     });
 };
