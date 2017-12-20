@@ -1,0 +1,21 @@
+<script>
+    let tmpl = document.createElement('template');
+    tmpl.innerHTML = `
+        <p>SOME SHADOW DOM TEXT</p>
+        <slot></slot>
+    `;
+
+    customElements.define('x-foo-shadowdom', class extends HTMLElement {
+        constructor() {
+            super();
+            let shadowRoot = this.attachShadow({mode: 'open'});
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+        }
+    });
+</script>
+
+<div>
+    <x-foo-shadowdom>
+        <div>SOME TEXT</div>
+    </x-foo-shadowdom>
+</div>

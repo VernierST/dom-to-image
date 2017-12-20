@@ -160,12 +160,25 @@
             });
 
         function makeNodeCopy(node) {
-            if (node instanceof HTMLCanvasElement) return util.makeImage(node.toDataURL());
+            if (node instanceof HTMLCanvasElement && node.clientHeight) return util.makeImage(node.toDataURL());
             return node.cloneNode(false);
         }
 
         function cloneChildren(original, clone, filter) {
-            var children = original.childNodes;
+            var children = Array.from(original.childNodes).filter(function(node) { return !node.slot; });
+            var shadowChildren = [];
+            var contentChildren = [];
+
+            if (original.shadowRoot) {
+                shadowChildren = Array.from(original.shadowRoot.childNodes);
+            }
+
+            if (original.nodeName.toUpperCase() === 'SLOT') {
+                contentChildren = Array.from(original.assignedNodes());
+            }
+
+            children = children.concat(shadowChildren, contentChildren);
+
             if (children.length === 0) return Promise.resolve(clone);
 
             return cloneChildrenInOrder(clone, util.asArray(children), filter)
