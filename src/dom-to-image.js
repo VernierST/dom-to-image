@@ -165,7 +165,7 @@
         }
 
         function cloneChildren(original, clone, filter) {
-            var children = Array.from(original.childNodes).filter(node => !node.slot);
+            var children = Array.from(original.childNodes).filter(function(node) { return !node.slot; });
             var shadowChildren = [];
             var contentChildren = [];
 
