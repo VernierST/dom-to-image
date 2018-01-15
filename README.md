@@ -1,6 +1,6 @@
 # DOM to Image (VST)
 
-[![Build Status](https://travis-ci.org/vernierst/dom-to-image.svg?branch=master)](https://travis-ci.org/vernierst/dom-to-image)
+[![Build Status](https://travis-ci.org/VernierSoftwareTechnology/dom-to-image.svg?branch=master)](https://travis-ci.org/VernierSoftwareTechnology/dom-to-image)
 
 > This project is a fork of [tsayen/dom-to-image](https://github.com/tsayen/dom-to-image) with the following differences:
 >
